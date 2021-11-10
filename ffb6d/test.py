@@ -126,11 +126,10 @@ def cal_view_pred_pose(model, data, epoch=0, obj_id=-1):
                 obj_id = int(cls_id[0])
             mesh_pts = bs_utils.get_pointxyz(obj_id, ds_type=args.dataset).copy()
             mesh_pts = np.dot(mesh_pts, pose[:, :3].T) + pose[:, 3]
-            # if args.dataset == "ycb":
-            #     K = config.intrinsic_matrix["ycb_K1"]
-            # else:
-            #     K = config.intrinsic_matrix["linemod"]
-            K = np.squeeze(data['K'])
+            if args.dataset == "ycb":
+                K = config.intrinsic_matrix["ycb_K1"]
+            else:
+                K = config.intrinsic_matrix["linemod"]
             mesh_p2ds = bs_utils.project_p3d(mesh_pts, 1.0, K)
             color = bs_utils.get_label_color(obj_id, n_obj=22, mode=2)
             np_rgb = bs_utils.draw_p2ds(np_rgb, mesh_p2ds, color=color)
