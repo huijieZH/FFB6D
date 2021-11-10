@@ -288,8 +288,9 @@ def model_fn_decorator(
                     teval.eval_pose_parallel(
                         cld, cu_dt['rgb'], labels, gt_ctr_ofs,
                         cu_dt['ctr_targ_ofst'], labels, epoch, cu_dt['cls_ids'],
-                        cu_dt['RTs'], gt_kp_ofs, cu_dt['kp_3ds'], cu_dt['ctr_3ds'],
-                        min_cnt=1, use_ctr_clus_flter=True, use_ctr=True, ds='ycb'
+                        cu_dt['RTs'], gt_kp_ofs, 
+                        cu_dt['kp_3ds'], cu_dt['ctr_3ds'], min_cnt=1, 
+                        use_ctr_clus_flter=True, use_ctr=True, ds='ycb'
                     )
 
         return (
@@ -391,6 +392,9 @@ class Trainer(object):
                 for k, v in acc_dict.items():
                     print(k, v, file=of)
         if args.local_rank == 0:
+            for key in acc_dict:
+                if isinstance(acc_dict[key], list):
+                    acc_dict[key] = sum(acc_dict[key]) / len(acc_dict[key])
             writer.add_scalars('val_acc', acc_dict, it)
 
         return total_loss / count, eval_dict

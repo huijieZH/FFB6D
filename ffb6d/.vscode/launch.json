@@ -1,0 +1,72 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "train",
+            "type": "python",
+            "request": "launch",
+            "module": "torch.distributed.launch",
+            "args": [
+                "--nproc_per_node=1",
+                "train_ycb.py",
+                "--gpu",
+                "0",
+                // "-checkpoint",
+                // "train_log/ycb/checkpoints/FFB6D_best.pth.tar",
+                "--gpus=1",
+                "--opt_level", "O2"
+            ]
+        },
+        {
+            "name": "test",
+            "type": "python",
+            "request": "launch",
+            "module": "torch.distributed.launch",
+            "args": [
+                "--nproc_per_node=1",
+                "train_ycb.py",
+                "--gpu",
+                "0",
+                "-eval_net",
+                "-checkpoint",
+                "train_log/ycb/checkpoints/FFB6D_best.pth.tar",
+                "-test",
+                "-test_pose",
+                "-debug"
+            ]
+        },
+        {
+            "name": "verify",
+            "type": "python",
+            "request": "launch",
+            "module": "torch.distributed.launch",
+            "args": [
+                "--nproc_per_node=1",
+                "train_ycb.py",
+                "--gpu",
+                "0",
+                "-eval_net",
+                "-checkpoint",
+                "train_log/ycb/checkpoints/FFB6D_best.pth.tar",
+                "-test",
+                "-test_pose",
+                "-test_gt"
+            ]
+        },
+        {
+            "name": "visual",
+            "type": "python",
+            "request": "launch",
+            "module": "demo",
+            "args": [
+                "-checkpoint",
+                "train_log/ycb/checkpoints/FFB6D_best.pth.tar",
+                "-dataset",
+                "ycb"
+            ]
+        }
+    ]
+}

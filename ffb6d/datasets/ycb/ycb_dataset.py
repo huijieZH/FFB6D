@@ -60,7 +60,9 @@ class Dataset():
         self.sym_cls_ids = [13, 16, 19, 20, 21]
 
     def real_syn_gen(self):
-        if self.rng.rand() > 0.8:
+        ##
+        # if self.rng.rand() > 0.8:
+        if self.rng.rand() > 0:
             n = len(self.real_lst)
             idx = self.rng.randint(0, n)
             item = self.real_lst[idx]
@@ -182,10 +184,12 @@ class Dataset():
             labels = np.array(li)
         rgb_labels = labels.copy()
         meta = scio.loadmat(os.path.join(self.root, item_name+'-meta.mat'))
-        if item_name[:8] != 'data_syn' and int(item_name[5:9]) >= 60:
-            K = config.intrinsic_matrix['ycb_K2']
-        else:
-            K = config.intrinsic_matrix['ycb_K1']
+        # if item_name[:8] != 'data_syn' and int(item_name[5:9]) >= 60:
+        #     K = config.intrinsic_matrix['ycb_K2']
+        # else:
+        #     K = config.intrinsic_matrix['ycb_K1']
+
+        K = meta['intrinsic_matrix']
 
         with Image.open(os.path.join(self.root, item_name+'-color.png')) as ri:
             if self.add_noise:
@@ -333,6 +337,7 @@ class Dataset():
             cls_ids=cls_ids.astype(np.int32),
             ctr_3ds=ctr3ds.astype(np.float32),
             kp_3ds=kp3ds.astype(np.float32),
+            K = K.astype(np.float32),
         )
         item_dict.update(inputs)
         if self.debug:
