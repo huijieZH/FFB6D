@@ -63,7 +63,7 @@
             "module": "demo",
             "args": [
                 "-checkpoint",
-                "train_log/ycb/checkpoints/FFB6D_best.pth.tar",
+                "train_log/ycb/checkpoints/FFB6D.pth.tar",
                 "-dataset",
                 "ycb"
             ]
