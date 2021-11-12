@@ -4,8 +4,9 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
-            "name": "train",
+            "name": "fine_tune",
             "type": "python",
             "request": "launch",
             "module": "torch.distributed.launch",
@@ -14,8 +15,8 @@
                 "train_ycb.py",
                 "--gpu",
                 "0",
-                // "-checkpoint",
-                // "train_log/ycb/checkpoints/FFB6D_best.pth.tar",
+                "-checkpoint",
+                "train_log/ycb/checkpoints/FFB6D_baseline.pth.tar",
                 "--gpus=1",
                 "--opt_level", "O2"
             ]
@@ -63,7 +64,7 @@
             "module": "demo",
             "args": [
                 "-checkpoint",
-                "train_log/ycb/checkpoints/FFB6D.pth.tar",
+                "train_log/ycb/checkpoints/FFB6D_best.pth.tar",
                 "-dataset",
                 "ycb"
             ]
