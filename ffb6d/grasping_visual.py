@@ -151,6 +151,15 @@ def cal_view_pred_pose(model, data, epoch=0, obj_id=-1):
     if epoch == 0:
         print("\n\nResults saved in {}".format(vis_dir))
 
+def generate_test():
+    path = "/media/huijie/photos/datasets_bop/YCB/graspinggrasping"
+    test_file_list = "/home/huijie/research/progresslabeller/FFB6D/ffb6d/datasets/ycb/dataset_config/dataset_config/test_data_list.txt"
+    files = os.listdir(path)
+    file = files[0]
+    f = open(test_file_list, "w")
+    f.write(os.path.join("data", "grasping", file))
+    f.close()
+
 def main():
     if args.dataset == "ycb":
         test_ds = YCB_Dataset('test')
@@ -183,7 +192,7 @@ def main():
 
 
 if __name__ == "__main__":
-
+    generate_test()
     main()
 
 # vim: ts=4 sw=4 sts=4 expandtab
