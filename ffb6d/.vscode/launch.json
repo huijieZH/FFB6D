@@ -32,7 +32,7 @@
                 "0",
                 "-eval_net",
                 "-checkpoint",
-                "train_log/ycb/checkpoints/FFB6D_best.pth.tar",
+                "train_log/ycb/checkpoints/FFB6D_baseline.pth.tar",
                 "-test",
                 "-test_pose",
                 "-debug"
@@ -62,7 +62,7 @@
             "module": "demo",
             "args": [
                 "-checkpoint",
-                "train_log/ycb/checkpoints/FFB6D_baseline.pth.tar",
+                "train_log/ycb/checkpoints/FFB6D_fine_tune_primesense.pth.tar",
                 "-dataset",
                 "ycb"
             ]
