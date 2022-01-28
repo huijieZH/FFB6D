@@ -346,9 +346,9 @@ class TorchEval():
                 self.cls_add_s_dis[cls_id] = self.cls_add_dis[cls_id]
             self.cls_add_s_dis[0] += self.cls_add_s_dis[cls_id]
         for i in range(self.n_cls):
-            add_auc = bs_utils.cal_auc(self.cls_add_dis[i])
-            adds_auc = bs_utils.cal_auc(self.cls_adds_dis[i])
-            add_s_auc = bs_utils.cal_auc(self.cls_add_s_dis[i])
+            add_auc = bs_utils.cal_auc(self.cls_add_dis[i], max_dis=0.2)
+            adds_auc = bs_utils.cal_auc(self.cls_adds_dis[i], max_dis=0.2)
+            add_s_auc = bs_utils.cal_auc(self.cls_add_s_dis[i], max_dis=0.2)
             add_auc_lst.append(add_auc)
             adds_auc_lst.append(adds_auc)
             add_s_auc_lst.append(add_s_auc)

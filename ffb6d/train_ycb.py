@@ -386,11 +386,11 @@ class Trainer(object):
                     test_pose=test_pose
                 )
             seg_res_fn = 'seg_res'
-            for k, v in acc_dict.items():
-                seg_res_fn += '_%s%.2f' % (k, v)
-            with open(os.path.join(config.log_eval_dir, seg_res_fn), 'w') as of:
-                for k, v in acc_dict.items():
-                    print(k, v, file=of)
+            # for k, v in acc_dict.items():
+            #     seg_res_fn += '_%s%.2f' % (k, v)
+            # with open(os.path.join(config.log_eval_dir, seg_res_fn), 'w') as of:
+            #     for k, v in acc_dict.items():
+            #         print(k, v, file=of)
         if args.local_rank == 0:
             for key in acc_dict:
                 if isinstance(acc_dict[key], list):

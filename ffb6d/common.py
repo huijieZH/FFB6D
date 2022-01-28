@@ -54,8 +54,8 @@ class Config:
         ensure_fd(self.log_traininfo_dir)
 
         self.n_total_epoch = 20
-        self.mini_batch_size = 6
-        self.val_mini_batch_size = 6
+        self.mini_batch_size = 4
+        self.val_mini_batch_size = 4
         self.test_mini_batch_size = 1
 
         self.n_sample_points = 480 * 640 // 24  # Number of input points

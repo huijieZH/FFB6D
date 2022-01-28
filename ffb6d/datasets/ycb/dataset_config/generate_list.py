@@ -16,15 +16,15 @@ f = open(os.path.join(os.path.dirname(__file__), f"{dataset_list}_data_list.txt"
 model_path = "/home/huijie/research/progresslabeller/FFB6D/ffb6d/datasets/ycb/YCB_Video_Dataset/data"
 
 template_path = os.path.join(sensor, template)
-
+# template_path = template
 
 
 def all_select(f):
    for data_package in sorted(glob.glob(os.path.join(model_path, template_path))):
       for filepath in sorted(glob.glob(os.path.join(data_package, "*-box.txt"))):
          idx = os.path.basename(filepath)[:6]
-         f.write(os.path.join("data/primesense/", os.path.basename(data_package), idx) + "\n")
-
+         f.write(os.path.join(f"data/{sensor}/", os.path.basename(data_package), idx) + "\n")
+         # f.write(os.path.join(f"data/", os.path.basename(data_package), idx) + "\n")
    f.close()
 
 def random_select(f, ratio):
@@ -35,6 +35,7 @@ def random_select(f, ratio):
          filepath = files[i]
          idx = os.path.basename(filepath)[:6]
          f.write(os.path.join("data", sensor ,os.path.basename(data_package), idx) + "\n")
+         # f.write(os.path.join("data", os.path.basename(data_package), idx) + "\n")
          i += int(1/ratio)
    f.close()   
 
