@@ -215,6 +215,9 @@ class Dataset():
         if self.debug:
             show_nrm_map = ((nrm_map + 1.0) * 127).astype(np.uint8)
             imshow("nrm_map", show_nrm_map)
+            cv2.imwrite("nrm_map.png", show_nrm_map)
+            im_depth = (dpt_um * 255/dpt_um.max()).astype(np.uint8)
+            cv2.imwrite("depth_map.png", im_depth)
 
         dpt_m = dpt_um.astype(np.float32) / cam_scale
         dpt_xyz = self.dpt_2_pcld(dpt_m, 1.0, K)

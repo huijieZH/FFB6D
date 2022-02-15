@@ -443,6 +443,8 @@ class Trainer(object):
             to_eval = (it % eval_frequency) == 0
             return to_eval, eval_frequency
 
+        ## only needed when the fintune the model, becuase there is a best_loss from online model.
+        best_loss = 1e10
         it = start_it
         _, eval_frequency = is_to_eval(0, it)
 
