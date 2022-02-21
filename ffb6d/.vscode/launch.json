@@ -17,7 +17,8 @@
                 "-checkpoint",
                 "train_log/ycb/checkpoints/FFB6D_baseline.pth.tar",
                 "--gpus=1",
-                "--opt_level", "O2"
+                "--opt_level", "O2",
+                "-debug"
             ]
         },
         {
@@ -32,7 +33,7 @@
                 "0",
                 "-eval_net",
                 "-checkpoint",
-                "train_log/ycb/checkpoints/FFB6D_baseline.pth.tar",
+                "train_log/ycb/checkpoints/FFB6D_L515.pth.tar",
                 "-test",
                 "-test_pose",
                 "-debug"
